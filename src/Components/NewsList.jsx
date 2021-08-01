@@ -49,7 +49,7 @@ const NewsList = () => {
 						</div>
 					);
 				} else {
-					let url = newsItem.urlToImage;
+					let url = newsItem.image;
 					if (url === null) {
 						url = Placeholder;
 					}

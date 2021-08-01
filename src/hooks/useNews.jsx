@@ -15,13 +15,14 @@ export default function useNews(pageNumber) {
 		let cancel;
 		axios({
 			method: "GET",
-			url: "https://newsapi.org/v2/top-headlines?",
+			url: "https://gnews.io/api/v4/top-headlines?",
 			params: {
 				country: "in",
 				category: "technology",
-				pageSize: 10,
+				lang: "en",
+				max: 10,
 				page: pageNumber,
-				apiKey: apiKey,
+				token: apiKey,
 			},
 			cancelToken: new axios.CancelToken((c) => (cancel = c)),
 		})
