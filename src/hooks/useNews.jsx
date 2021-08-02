@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function useNews(pageNumber) {
-	const apiKey = import.meta.env.VITE_API_KEY;
-
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(false);
 	const [news, setNews] = useState([]);
@@ -15,22 +13,17 @@ export default function useNews(pageNumber) {
 		let cancel;
 		axios({
 			method: "GET",
-			url: "https://gnews.io/api/v4/top-headlines?",
+			url: "https://api.hackerwebapp.com/news?",
 			params: {
-				country: "in",
-				category: "technology",
-				lang: "en",
-				max: 10,
 				page: pageNumber,
-				token: apiKey,
 			},
 			cancelToken: new axios.CancelToken((c) => (cancel = c)),
 		})
 			.then((response) => {
 				setNews((prevNews) => {
-					return [...new Set([...prevNews, ...response.data.articles])];
+					return [...new Set([...prevNews, ...response.data])];
 				});
-				setHasMore(response.data.articles.length > 0);
+				setHasMore(response.data.length > 0);
 				setLoading(false);
 				console.log(response.data);
 			})

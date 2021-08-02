@@ -4,7 +4,6 @@ import { css } from "@emotion/react";
 import BarLoader from "react-spinners/BarLoader";
 
 import useNews from "../hooks/useNews";
-import Placeholder from "../assets/placeholder.jpg";
 
 const override = css`
 	display: block;
@@ -49,18 +48,20 @@ const NewsList = () => {
 						</div>
 					);
 				} else {
-					let url = newsItem.image;
-					if (url === null) {
-						url = Placeholder;
+					let url = newsItem.url;
+					let domain = newsItem.domain;
+
+					if (url.includes("item?id=") && newsItem.domain === undefined) {
+						url = `https://news.ycombinator.com/${newsItem.url}`;
+						domain = `news.ycombinator.com`;
 					}
+
 					return (
 						<div ref={lastNewsElementRef} key={index}>
-							<img
-								style={{ height: "146px", width: "146px" }}
-								src={url}
-								alt="Image"
-							/>
 							<h1>{newsItem.title}</h1>
+							<a href={url} target="_blank">
+								{domain}
+							</a>
 						</div>
 					);
 				}
