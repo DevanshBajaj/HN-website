@@ -2,8 +2,10 @@ import { useState, useRef, useCallback } from "react";
 
 import { css } from "@emotion/react";
 import BarLoader from "react-spinners/BarLoader";
+import moment from "moment";
 
 import useNews from "../hooks/useNews";
+import News from "./News";
 
 const override = css`
 	display: block;
@@ -41,28 +43,42 @@ const NewsList = () => {
 	return (
 		<div>
 			{news.map((newsItem, index) => {
+				let url = newsItem.url;
+				let domain = newsItem.domain;
+
+				if (url.includes("item?id=") && newsItem.domain === undefined) {
+					url = `https://news.ycombinator.com/${newsItem.url}`;
+					domain = `news.ycombinator.com`;
+				}
+				let date = moment(newsItem.time * 1000).format("MMMM Do YYYY, h:mm A");
+
 				if (news.length === index) {
 					return (
-						<div key={index}>
-							<h1>{newsItem.title}</h1>
-						</div>
+						<News
+							id={newsItem.id}
+							ref={lastNewsElementRef}
+							title={newsItem.title}
+							user={newsItem.user}
+							url={url}
+							date={date}
+							domain={domain}
+							comments_count={newsItem.comments_count}
+							time_ago={newsItem.time_ago}
+						/>
 					);
 				} else {
-					let url = newsItem.url;
-					let domain = newsItem.domain;
-
-					if (url.includes("item?id=") && newsItem.domain === undefined) {
-						url = `https://news.ycombinator.com/${newsItem.url}`;
-						domain = `news.ycombinator.com`;
-					}
-
 					return (
-						<div ref={lastNewsElementRef} key={index}>
-							<h1>{newsItem.title}</h1>
-							<a href={url} target="_blank">
-								{domain}
-							</a>
-						</div>
+						<News
+							id={newsItem.id}
+							ref={lastNewsElementRef}
+							title={newsItem.title}
+							user={newsItem.user}
+							url={url}
+							date={date}
+							domain={domain}
+							comments_count={newsItem.comments_count}
+							time_ago={newsItem.time_ago}
+						/>
 					);
 				}
 			})}
