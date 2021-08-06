@@ -45,10 +45,13 @@ const NewsList = () => {
 			{news.map((newsItem, index) => {
 				let url = newsItem.url;
 				let domain = newsItem.domain;
+				let UrlPreview = newsItem.domain;
 
 				if (url.includes("item?id=") && newsItem.domain === undefined) {
 					url = `https://news.ycombinator.com/${newsItem.url}`;
 					domain = `news.ycombinator.com`;
+				} else {
+					domain = `https://${newsItem.domain}`;
 				}
 				let date = moment(newsItem.time * 1000).format("MMMM Do YYYY, h:mm A");
 
@@ -60,6 +63,7 @@ const NewsList = () => {
 							title={newsItem.title}
 							user={newsItem.user}
 							url={url}
+							UrlTitle={UrlPreview}
 							date={date}
 							domain={domain}
 							comments_count={newsItem.comments_count}
@@ -75,6 +79,7 @@ const NewsList = () => {
 							user={newsItem.user}
 							url={url}
 							date={date}
+							UrlTitle={UrlPreview}
 							domain={domain}
 							comments_count={newsItem.comments_count}
 							time_ago={newsItem.time_ago}
