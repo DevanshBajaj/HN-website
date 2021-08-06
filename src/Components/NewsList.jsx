@@ -3,9 +3,32 @@ import { useState, useRef, useCallback } from "react";
 import { css } from "@emotion/react";
 import BarLoader from "react-spinners/BarLoader";
 import moment from "moment";
+import styled from "styled-components";
 
 import useNews from "../hooks/useNews";
 import News from "./News";
+
+const Wrapper = styled.div`
+	padding: 3rem 10rem;
+	@media (max-width: 898px) {
+		padding: 2rem 2rem;
+	}
+	@media (max-width: 546px) {
+		padding: 2rem 0rem;
+	}
+`;
+
+const MaxReached = styled.h1`
+	color: #b00020;
+	font-size: 1.5rem;
+	padding: 2rem 0 0 2rem;
+	@media (max-width: 649px) {
+		font-size: 1.2rem;
+	}
+	@media (max-width: 546px) {
+		font-size: 1rem;
+	}
+`;
 
 const override = css`
 	display: block;
@@ -24,7 +47,7 @@ const NewsList = () => {
 		(node) => {
 			if (loading) return;
 			if (observer.current) observer.current.disconnect();
-			if (pageNumber === 10) {
+			if (pageNumber === 14) {
 				setPagesReached(true);
 			} else {
 				observer.current = new IntersectionObserver((entries) => {
@@ -41,27 +64,37 @@ const NewsList = () => {
 	);
 
 	return (
-		<div>
+		<Wrapper>
 			{news.map((newsItem, index) => {
 				let url = newsItem.url;
 				let domain = newsItem.domain;
 				let UrlPreview = newsItem.domain;
+				let Username = newsItem.user;
 
 				if (url.includes("item?id=") && newsItem.domain === undefined) {
 					url = `https://news.ycombinator.com/${newsItem.url}`;
 					domain = `news.ycombinator.com`;
+					UrlPreview = 'news.ycombinator.com';
 				} else {
 					domain = `https://${newsItem.domain}`;
 				}
+
+				if (newsItem.user === null) {
+					Username = "Unknown";
+				} else {
+					Username = newsItem.user;
+				}
+
 				let date = moment(newsItem.time * 1000).format("MMMM Do YYYY, h:mm A");
 
 				if (news.length === index) {
 					return (
 						<News
+							key={index}
 							id={newsItem.id}
 							ref={lastNewsElementRef}
 							title={newsItem.title}
-							user={newsItem.user}
+							user={Username}
 							url={url}
 							UrlTitle={UrlPreview}
 							date={date}
@@ -73,10 +106,11 @@ const NewsList = () => {
 				} else {
 					return (
 						<News
+							key={index}
 							id={newsItem.id}
 							ref={lastNewsElementRef}
 							title={newsItem.title}
-							user={newsItem.user}
+							user={Username}
 							url={url}
 							date={date}
 							UrlTitle={UrlPreview}
@@ -88,7 +122,7 @@ const NewsList = () => {
 				}
 			})}
 			{pagesReached ? (
-				<h1>Max Pages Reached</h1>
+				<MaxReached>Max Pages Reached</MaxReached>
 			) : (
 				<div>
 					<BarLoader
@@ -100,7 +134,7 @@ const NewsList = () => {
 					<div>{error && "error..."}</div>
 				</div>
 			)}
-		</div>
+		</Wrapper>
 	);
 };
 
