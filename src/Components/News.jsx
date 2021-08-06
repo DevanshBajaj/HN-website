@@ -1,6 +1,8 @@
+import classes from './News.module.css';
+
 const News = React.forwardRef((props, ref) => {
 	return (
-		<div ref={ref} key={props.id}>
+		<div ref={ref} key={props.id} className={classes.wrapper}>
 			<h1>{props.title}</h1>
 			<p>By: {props.user}</p>
 			<p>

@@ -1,0 +1,10 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem 3rem;
+  margin: 2rem;
+  background-color: #25252d;
+  color: white;
+  border-radius: 24px;
+}
