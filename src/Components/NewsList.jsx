@@ -73,7 +73,7 @@ const NewsList = () => {
 
 				if (url.includes("item?id=") && newsItem.domain === undefined) {
 					url = `https://news.ycombinator.com/${newsItem.url}`;
-					domain = `news.ycombinator.com`;
+					domain = `https://news.ycombinator.com/`;
 					UrlPreview = 'news.ycombinator.com';
 				} else {
 					domain = `https://${newsItem.domain}`;
