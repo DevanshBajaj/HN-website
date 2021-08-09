@@ -1,0 +1,23 @@
+.button {
+  width: 100px;
+  padding: 0.5rem;
+  background-color: #9546C3;
+  color: #FBFBFB;
+  border-radius: 6px;
+  border: #9546C3 solid 2px;
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.button:hover {
+  background-color: #F5F5F5;
+  color: #9546C3;
+}
+.button:active a{
+  background-color: #F5F5F5;
+  color: #9546C3;
+}
