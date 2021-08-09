@@ -8,3 +8,8 @@
   color: white;
   border-radius: 24px;
 }
+
+a {
+  text-decoration: none;
+  color: #9546C3;
+}
