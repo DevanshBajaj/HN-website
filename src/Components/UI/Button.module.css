@@ -1,10 +1,10 @@
 .button {
   width: 100px;
   padding: 0.5rem;
-  background-color: #9546C3;
+  background-color: #74AA98;
   color: #FBFBFB;
   border-radius: 6px;
-  border: #9546C3 solid 2px;
+  border: #74AA98 solid 2px;
   cursor: pointer;
   text-decoration: none;
   display: flex;
@@ -17,10 +17,11 @@
 }
 
 .button:hover {
-  background-color: #F5F5F5;
-  color: #9546C3;
+  background-color: #272626;
+  color: #74AA98;
+  border: #74AA98 solid 2px;
 }
 .button:active a{
   background-color: #F5F5F5;
-  color: #9546C3;
+  color: #74AA98;
 }
