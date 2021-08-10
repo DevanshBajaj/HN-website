@@ -11,5 +11,51 @@
 
 a {
   text-decoration: none;
-  color: #9546C3;
+  color: #9AC1B4;
+  
+}
+
+p {
+  margin: 1rem 0;
+}
+
+.title {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #9AC1B4;
+}
+
+.userWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+}
+
+.dateWrapper {
+  width: 82%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem 2rem;
+    margin: 1rem;
+    background-color: #25252d;
+    color: white;
+    border-radius: 24px;
+  }
+  .title {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #D1E3DD;
+  }
 }
