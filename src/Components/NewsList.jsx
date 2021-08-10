@@ -9,12 +9,16 @@ import useNews from "../hooks/useNews";
 import News from "./News";
 
 const Wrapper = styled.div`
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
 	padding: 3rem 10rem;
-	@media (max-width: 898px) {
-		padding: 2rem 2rem;
-	}
-	@media (max-width: 546px) {
-		padding: 2rem 0rem;
+
+	@media (max-width: 1215px) {
+		display: grid;
+  	grid-gap: 1rem;
+  	grid-template-columns: repeat(auto-fit, minmax(60%, 1fr));
+		padding: 1rem 2rem;
 	}
 `;
 
