@@ -7,6 +7,12 @@ export default function useNews(pageNumber) {
 	const [news, setNews] = useState([]);
 	const [hasMore, setHasMore] = useState(false);
 
+	function sleeper(ms) {
+		return function (x) {
+			return new Promise(resolve => setTimeout(() => resolve(x), ms));
+		};
+	}
+
 	useEffect(() => {
 		setLoading(true);
 		setError(false);
@@ -19,7 +25,7 @@ export default function useNews(pageNumber) {
 			},
 			cancelToken: new axios.CancelToken((c) => (cancel = c)),
 		})
-			.then((response) => {
+			.then(sleeper(200)).then((response) => {
 				setNews((prevNews) => {
 					return [...new Set([...prevNews, ...response.data])];
 				});

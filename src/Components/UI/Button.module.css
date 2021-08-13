@@ -14,6 +14,7 @@
   user-select: none;
   -webkit-user-select: none;
   -webkit-user-drag: none;
+  transition: all 0.25s ease-in;
 }
 
 .button:hover {
@@ -22,6 +23,7 @@
   border: #74AA98 solid 2px;
 }
 .button:active a{
+
   background-color: #F5F5F5;
   color: #74AA98;
 }

@@ -37,6 +37,7 @@ const MaxReached = styled.h1`
 const override = css`
 	display: block;
 	margin: 0 auto;
+	margin-bottom: 3rem;
 	border-color: red;
 `;
 
@@ -130,7 +131,7 @@ const NewsList = () => {
 			) : (
 				<div>
 					<BarLoader
-						color="#00a9e0"
+						color="#74AA98"
 						loading={loading}
 						css={override}
 						size={150}
