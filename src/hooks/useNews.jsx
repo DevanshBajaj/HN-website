@@ -25,7 +25,7 @@ export default function useNews(pageNumber) {
 			},
 			cancelToken: new axios.CancelToken((c) => (cancel = c)),
 		})
-			.then(sleeper(200)).then((response) => {
+			.then(sleeper(100)).then((response) => {
 				setNews((prevNews) => {
 					return [...new Set([...prevNews, ...response.data])];
 				});

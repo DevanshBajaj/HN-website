@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, Fragment } from "react";
 
 import { css } from "@emotion/react";
 import BarLoader from "react-spinners/BarLoader";
@@ -35,7 +35,9 @@ const MaxReached = styled.h1`
 `;
 
 const override = css`
-	display: block;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	margin: 0 auto;
 	margin-bottom: 3rem;
 	border-color: red;
@@ -69,63 +71,65 @@ const NewsList = () => {
 	);
 
 	return (
-		<Wrapper>
-			{news.map((newsItem, index) => {
-				let url = newsItem.url;
-				let domain = newsItem.domain;
-				let UrlPreview = newsItem.domain;
-				let Username = newsItem.user;
+		<Fragment>
+			<Wrapper>
+				{news.map((newsItem, index) => {
+					let url = newsItem.url;
+					let domain = newsItem.domain;
+					let UrlPreview = newsItem.domain;
+					let Username = newsItem.user;
 
-				if (url.includes("item?id=") && newsItem.domain === undefined) {
-					url = `https://news.ycombinator.com/${newsItem.url}`;
-					domain = `https://news.ycombinator.com/`;
-					UrlPreview = 'news.ycombinator.com';
-				} else {
-					domain = `https://${newsItem.domain}`;
-				}
+					if (url.includes("item?id=") && newsItem.domain === undefined) {
+						url = `https://news.ycombinator.com/${newsItem.url}`;
+						domain = `https://news.ycombinator.com/`;
+						UrlPreview = 'news.ycombinator.com';
+					} else {
+						domain = `https://${newsItem.domain}`;
+					}
 
-				if (newsItem.user === null) {
-					Username = "Unknown";
-				} else {
-					Username = newsItem.user;
-				}
+					if (newsItem.user === null) {
+						Username = "Unknown";
+					} else {
+						Username = newsItem.user;
+					}
 
-				let date = moment(newsItem.time * 1000).format("MMMM Do YYYY, h:mm A");
+					let date = moment(newsItem.time * 1000).format("MMM Do YY, h A");
 
-				if (news.length === index) {
-					return (
-						<News
-							key={index}
-							id={newsItem.id}
-							ref={lastNewsElementRef}
-							title={newsItem.title}
-							user={Username}
-							url={url}
-							UrlTitle={UrlPreview}
-							date={date}
-							domain={domain}
-							comments_count={newsItem.comments_count}
-							time_ago={newsItem.time_ago}
-						/>
-					);
-				} else {
-					return (
-						<News
-							key={index}
-							id={newsItem.id}
-							ref={lastNewsElementRef}
-							title={newsItem.title}
-							user={Username}
-							url={url}
-							date={date}
-							UrlTitle={UrlPreview}
-							domain={domain}
-							comments_count={newsItem.comments_count}
-							time_ago={newsItem.time_ago}
-						/>
-					);
-				}
-			})}
+					if (news.length === index) {
+						return (
+							<News
+								key={index}
+								id={newsItem.id}
+								ref={lastNewsElementRef}
+								title={newsItem.title}
+								user={Username}
+								url={url}
+								UrlTitle={UrlPreview}
+								date={date}
+								domain={domain}
+								comments_count={newsItem.comments_count}
+								time_ago={newsItem.time_ago}
+							/>
+						);
+					} else {
+						return (
+							<News
+								key={index}
+								id={newsItem.id}
+								ref={lastNewsElementRef}
+								title={newsItem.title}
+								user={Username}
+								url={url}
+								date={date}
+								UrlTitle={UrlPreview}
+								domain={domain}
+								comments_count={newsItem.comments_count}
+								time_ago={newsItem.time_ago}
+							/>
+						);
+					}
+				})}
+			</Wrapper>
 			{pagesReached ? (
 				<MaxReached>Max Pages Reached</MaxReached>
 			) : (
@@ -139,7 +143,7 @@ const NewsList = () => {
 					<div>{error && "error..."}</div>
 				</div>
 			)}
-		</Wrapper>
+		</Fragment>
 	);
 };
 

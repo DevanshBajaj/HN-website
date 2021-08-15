@@ -1,7 +1,7 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   padding: 1rem 3rem;
   margin: 2rem;
   background-color: #25252d;
@@ -16,7 +16,11 @@ a {
 }
 
 p {
-  margin: 1rem 0;
+  margin: 0.6rem 0;
+}
+
+.comments {
+  margin: 0.6rem 0;
 }
 
 .title {
@@ -24,21 +28,24 @@ p {
   font-size: 2rem;
   font-weight: bold;
   color: #9AC1B4;
+  max-width: 100%;
 }
 
 .userWrapper {
-  width: 100%;
   display: flex;
-  flex-direction: row;
-  justify-content: start;
-  align-items: center;
+  flex-direction: column;
 }
 
 .dateWrapper {
-  width: 82%;
+  max-width: 60%;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+}
+
+@media (max-width: 1215px) {
+  .dateWrapper {
+    max-width: 40%;
+  }  
 }
 
 @media (max-width: 768px) {
@@ -57,5 +64,14 @@ p {
     font-size: 1.6rem;
     font-weight: bold;
     color: #D1E3DD;
+  }
+  .dateWrapper {
+    max-width: 54%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  p {
+    margin: 0.4rem 0;
   }
 }
