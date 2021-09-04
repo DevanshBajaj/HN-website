@@ -18,7 +18,7 @@ const Wrapper = styled.div`
 		display: grid;
   	grid-gap: 1rem;
   	grid-template-columns: repeat(auto-fit, minmax(60%, 1fr));
-		padding: 1rem 2rem;
+		padding: 1rem 1rem;
 	}
 `;
 
