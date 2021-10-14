@@ -31,7 +31,6 @@ export default function useNews(pageNumber) {
 				});
 				setHasMore(response.data.length > 0);
 				setLoading(false);
-				console.log(response.data);
 			})
 			.catch((error) => {
 				if (axios.isCancel(error)) return;
